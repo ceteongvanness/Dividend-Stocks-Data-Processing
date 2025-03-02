@@ -3,9 +3,9 @@ import os
 from datetime import datetime
 
 # File paths
-aristocrats_file = 'DividentAristocrats_02032025.csv'
-champions_file = 'DividentChampions_02032025.csv'
-kings_file = 'DividentKing_02032025.csv'
+aristocrats_file = 'DividendAristocrats_02032025.csv'
+champions_file = 'DividendChampions_02032025.csv'
+kings_file = 'DividendKing_02032025.csv'
 output_file = 'CombinedDividendStocks_02032025.csv'
 
 # Read CSV files

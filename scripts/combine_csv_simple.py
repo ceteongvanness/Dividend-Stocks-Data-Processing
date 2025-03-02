@@ -1,13 +1,13 @@
 import pandas as pd
 
 # Read CSV files
-aristocrats_df = pd.read_csv('DividentAristocrats_02032025.csv')
+aristocrats_df = pd.read_csv('DividendAristocrats_02032025.csv')
 aristocrats_df['category'] = 'Aristocrat'
 
-champions_df = pd.read_csv('DividentChampions_02032025.csv')
+champions_df = pd.read_csv('DividendChampions_02032025.csv')
 champions_df['category'] = 'Champion'
 
-kings_df = pd.read_csv('DividentKing_02032025.csv')
+kings_df = pd.read_csv('DividendKing_02032025.csv')
 kings_df['category'] = 'King'
 
 # Combine dataframes
