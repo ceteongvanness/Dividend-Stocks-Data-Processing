@@ -5,10 +5,10 @@ from datetime import datetime
 today_date = datetime.now().strftime('%m%d%Y')
 
 # File paths
-aristocrats_file = 'DividendAristocrats_02032025.csv'
-champions_file = 'DividendChampions_02032025.csv'
-kings_file = 'DividendKings_02032025.csv'
-output_file = f'CombinedDividendStocks_{today_date}.csv'
+aristocrats_file = 'data/DividendAristocrats_02032025.csv'
+champions_file = 'data/DividendChampions_02032025.csv'
+kings_file = 'data/DividendKings_02032025.csv'
+output_file = f'data/CombinedDividendStocks_{today_date}.csv'
 
 # Read CSV files
 print(f"Reading {aristocrats_file}...")

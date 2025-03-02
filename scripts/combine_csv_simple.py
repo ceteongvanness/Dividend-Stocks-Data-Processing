@@ -8,13 +8,13 @@ today_date = datetime.now().strftime('%m%d%Y')
 output_file = f'CombinedDividendStocks_{today_date}.csv'
 
 # Read CSV files
-aristocrats_df = pd.read_csv('DividendAristocrats_02032025.csv')
+aristocrats_df = pd.read_csv('data/DividendAristocrats_02032025.csv')
 aristocrats_df['category'] = 'Aristocrat'
 
-champions_df = pd.read_csv('DividendChampions_02032025.csv')
+champions_df = pd.read_csv('data/DividendChampions_02032025.csv')
 champions_df['category'] = 'Champion'
 
-kings_df = pd.read_csv('DividendKings_02032025.csv')
+kings_df = pd.read_csv('data/DividendKings_02032025.csv')
 kings_df['category'] = 'King'
 
 # Combine dataframes
