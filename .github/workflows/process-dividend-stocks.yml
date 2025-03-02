@@ -31,14 +31,14 @@ jobs:
 
     - name: Run CSV combining script
       run: |
-        python scripts/combine_csv_advanced.py
+        python scripts/combine_csv_sorted.py
 
     - name: Create zip file of outputs
       run: |
         # Create a directory for outputs if it doesn't exist
         mkdir -p outputs
         # Copy the combined CSV file to outputs directory
-        cp data/CombinedDividendStocks_*.csv outputs/
+        cp CombinedDividendStocks_*.csv outputs/
         # Create a zip file
         cd outputs
         zip -r ../dividend-stocks-data.zip .
@@ -55,6 +55,6 @@ jobs:
     #   run: |
     #     git config --local user.email "action@github.com"
     #     git config --local user.name "GitHub Action"
-    #     git add data/CombinedDividendStocks_*.csv
+    #     git add CombinedDividendStocks_*.csv
     #     git diff --quiet && git diff --staged --quiet || git commit -m "Update combined dividend stocks data [automated]"
     #     git push
