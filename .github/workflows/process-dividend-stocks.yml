@@ -31,7 +31,25 @@ jobs:
 
     - name: Run CSV combining script
       run: |
-        python scripts/combine_csv_advanced.py
+        python scripts/combine_csv_dynamic.py
+
+    - name: Create zip file of outputs
+      run: |
+        # Create a directory for outputs if it doesn't exist
+        mkdir -p outputs
+        # Copy the combined CSV file to outputs directory
+        cp data/CombinedDividendStocks_*.csv outputs/
+        # Create a zip file
+        cd outputs
+        zip -r ../dividend-stocks-data.zip .
+        cd ..
+
+    - name: Upload zip as artifact
+      uses: actions/upload-artifact@v3
+      with:
+        name: dividend-stocks-data
+        path: dividend-stocks-data.zip
+        retention-days: 7
 
     # - name: Commit and push if changes
     #   run: |
