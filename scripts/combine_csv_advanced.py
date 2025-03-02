@@ -8,7 +8,7 @@ today_date = datetime.now().strftime('%m%d%Y')
 # File paths
 aristocrats_file = 'data/DividendAristocrats_02032025.csv'
 champions_file = 'data/DividendChampions_02032025.csv'
-kings_file = 'data/DividendKing_02032025.csv'
+kings_file = 'data/DividendKings_02032025.csv'
 output_file = f'data/CombinedDividendStocks_{today_date}.csv'
 
 # Read CSV files
