@@ -51,10 +51,10 @@ jobs:
         path: dividend-stocks-data.zip
         retention-days: 7
 
-    - name: Commit and push if changes
-      run: |
-        git config --local user.email "action@github.com"
-        git config --local user.name "GitHub Action"
-        git add data/CombinedDividendStocks_*.csv
-        git diff --quiet && git diff --staged --quiet || git commit -m "Update combined dividend stocks data [automated]"
-        git push
+    # - name: Commit and push if changes
+    #   run: |
+    #     git config --local user.email "action@github.com"
+    #     git config --local user.name "GitHub Action"
+    #     git add data/CombinedDividendStocks_*.csv
+    #     git diff --quiet && git diff --staged --quiet || git commit -m "Update combined dividend stocks data [automated]"
+    #     git push
