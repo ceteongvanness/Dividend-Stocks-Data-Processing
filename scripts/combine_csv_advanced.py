@@ -1,12 +1,14 @@
 import pandas as pd
-import os
 from datetime import datetime
+
+# Get today's date in the format MMDDYYYY
+today_date = datetime.now().strftime('%m%d%Y')
 
 # File paths
 aristocrats_file = 'DividendAristocrats_02032025.csv'
 champions_file = 'DividendChampions_02032025.csv'
-kings_file = 'DividendKing_02032025.csv'
-output_file = 'CombinedDividendStocks_02032025.csv'
+kings_file = 'DividendKings_02032025.csv'
+output_file = f'CombinedDividendStocks_{today_date}.csv'
 
 # Read CSV files
 print(f"Reading {aristocrats_file}...")
@@ -44,7 +46,7 @@ def get_month_name(month_num):
     except:
         return None
 
-# Add payment month columns (optional)
+# Add payment month columns
 combined_df['payment_month'] = combined_df['payout_next_ex_date'].apply(extract_month)
 combined_df['payment_month_name'] = combined_df['payment_month'].apply(get_month_name)
 
@@ -56,7 +58,7 @@ print(f"Successfully combined {len(aristocrats_df)} Aristocrats, {len(champions_
 print(f"Total records in combined file: {len(combined_df)}")
 print(f"Output saved to {output_file}")
 
-# Print some statistics (optional)
+# Print some statistics
 print("\nMonthly distribution of dividend payments:")
 monthly_counts = combined_df.groupby(['payment_month_name', 'category']).size().unstack(fill_value=0)
 print(monthly_counts)
