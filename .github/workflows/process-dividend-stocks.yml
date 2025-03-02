@@ -29,9 +29,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install pandas
 
-    - name: Run CSV combining script
+    - name: Run CSV combining Advanced script
       run: |
         python scripts/combine_csv_advanced.py
+
+    - name: Run CSV combining Simple script
+      run: |
+        python scripts/combine_csv_simple.py
 
     - name: Create zip file of outputs
       run: |

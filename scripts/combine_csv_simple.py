@@ -14,7 +14,7 @@ aristocrats_df['category'] = 'Aristocrat'
 champions_df = pd.read_csv('DividendChampions_02032025.csv')
 champions_df['category'] = 'Champion'
 
-kings_df = pd.read_csv('DividendKing_02032025.csv')
+kings_df = pd.read_csv('DividendKings_02032025.csv')
 kings_df['category'] = 'King'
 
 # Combine dataframes
