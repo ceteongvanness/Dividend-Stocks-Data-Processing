@@ -16,7 +16,7 @@ dividend-stocks/
 ├── data/                          # Data directory
 │   ├── DividendAristocrats_02032025.csv   # Dividend Aristocrats data
 │   ├── DividendChampions_02032025.csv     # Dividend Champions data
-│   ├── DividendKing_02032025.csv          # Dividend Kings data
+│   ├── DividendKings_02032025.csv          # Dividend Kings data
 │   └── CombinedDividendStocks.csv         # Output combined file (generated)
 │
 ├── scripts/                       # Python scripts
@@ -62,7 +62,7 @@ The project expects three input CSV files with dividend stock data:
 
 1. `DividendAristocrats_02032025.csv` - Dividend Aristocrats (stocks with 25+ years of dividend increases)
 2. `DividendChampions_02032025.csv` - Dividend Champions (stocks with similar criteria as Aristocrats)
-3. `DividendKing_02032025.csv` - Dividend Kings (stocks with 50+ years of dividend increases)
+3. `DividendKings_02032025.csv` - Dividend Kings (stocks with 50+ years of dividend increases)
 
 Each file contains extensive information about the stocks, including:
 - Stock symbols and names
@@ -94,7 +94,7 @@ aristocrats_df['category'] = 'Aristocrat'
 champions_df = pd.read_csv('data/DividendChampions_02032025.csv')
 champions_df['category'] = 'Champion'
 
-kings_df = pd.read_csv('data/DividendKing_02032025.csv')
+kings_df = pd.read_csv('data/DividendKings_02032025.csv')
 kings_df['category'] = 'King'
 
 # Combine dataframes
