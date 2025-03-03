@@ -14,14 +14,18 @@ The solution can extract payment month information from ex-dividend dates and pr
 Dividend-Stocks-Data-Processing/
 │
 ├── data/                          # Data directory
-│   ├── DividendAristocrats_02032025.csv   # Dividend Aristocrats data
-│   ├── DividendChampions_02032025.csv     # Dividend Champions data
-│   ├── DividendKings_02032025.csv          # Dividend Kings data
-│   └── CombinedDividendStocks.csv         # Output combined file (generated)
+│   ├── DividentAristocrats_02032025.csv   # Dividend Aristocrats data
+│   ├── DividentChampions_02032025.csv     # Dividend Champions data
+│   ├── DividentKing_02032025.csv          # Dividend Kings data
+│   └── CombinedDividendStocks_*.csv       # Output combined file (generated with date)
 │
 ├── scripts/                       # Python scripts
 │   ├── combine_csv_simple.py      # Simple version of the CSV combiner
-│   └── combine_csv_advanced.py    # Advanced version with additional processing
+│   ├── combine_csv_advanced.py    # Advanced version with additional processing
+│   └── combine_csv_multi_category.py      # Full version with advanced features
+│
+├── .github/workflows/             # GitHub Actions workflows
+│   └── process-dividend-stocks.yml # Automated workflow configuration
 │
 ├── README.md                      # This file
 └── requirements.txt               # Project dependencies
@@ -56,6 +60,14 @@ Run the advanced version with payment month extraction and statistics:
 python scripts/combine_csv_advanced.py
 ```
 
+### Multi-Category Combiner
+
+Run the full version that handles multiple categories per stock with detailed analysis:
+
+```bash
+python scripts/combine_csv_multi_category.py
+```
+
 ## Input Data
 
 The project expects three input CSV files with dividend stock data:
@@ -80,37 +92,45 @@ The advanced script also adds:
 - `payment_month` - Numerical month (1-12) derived from the ex-dividend date
 - `payment_month_name` - Month name (January-December)
 
+## GitHub Actions Automation
+The project includes a GitHub Actions workflow that:
+1. Runs automatically on schedule or when code is pushed
+2. Processes the CSV files using the specified script
+3. Creates a zip file of the results
+4. Uploads the zip as an artifact for download
+5. Commits the updated combined CSV file to the repository
+
+To access the zip file:
+1. Go to the GitHub repository
+2. Click on the "Actions" tab
+3. Select the latest workflow run
+4. Download the artifact from the run summary
+
 ## Example Code
 
-Simple version:
+Multi-category handling:
 
 ```python
-import pandas as pd
+# Create a combined category string for each stock
+def get_combined_category(row):
+    categories = []
+    if row['is_aristocrat']:
+        categories.append('Aristocrat')
+    if row['is_champion']:
+        categories.append('Champion')
+    if row['is_king']:
+        categories.append('King')
+    return ', '.join(categories)
 
-# Read CSV files
-aristocrats_df = pd.read_csv('data/DividendAristocrats_02032025.csv')
-aristocrats_df['category'] = 'Aristocrat'
-
-champions_df = pd.read_csv('data/DividendChampions_02032025.csv')
-champions_df['category'] = 'Champion'
-
-kings_df = pd.read_csv('data/DividendKings_02032025.csv')
-kings_df['category'] = 'King'
-
-# Combine dataframes
-combined_df = pd.concat([aristocrats_df, champions_df, kings_df], ignore_index=True)
-
-# Write to output file
-combined_df.to_csv('data/CombinedDividendStocks.csv', index=False)
-
-print(f"Combined CSV file created successfully with {len(combined_df)} stocks.")
+result_df['category'] = result_df.apply(get_combined_category, axis=1)
 ```
 
 ## Notes
 
-- There may be overlap between categories (some stocks may appear in multiple input files)
-- The current implementation preserves all duplicates in the combined output
-- To get a summary of dividend payments by month and category, use the advanced script
+- Many stocks appear in multiple input files (overlap between categories)
+- This implementation preserves all category memberships in the combined output
+- For stocks in multiple categories, data is prioritized from Kings, then Champions, then Aristocrats
+- The output filename includes the current date (MMDDYYYY format)
 
 ## Data Summary
 
@@ -119,3 +139,4 @@ Based on the analysis of the input files:
 - Dividend Champions are the largest category with 124 stocks
 - Dividend Kings are the smallest category with 51 stocks
 - Dividend Aristocrats include 50 stocks
+- Many stocks belong to multiple categories (e.g., both Aristocrat and Champion)
