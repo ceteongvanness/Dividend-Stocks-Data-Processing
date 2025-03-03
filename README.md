@@ -60,14 +60,6 @@ Run the advanced version with payment month extraction and statistics:
 python scripts/combine_csv_advanced.py
 ```
 
-### Multi-Category Combiner
-
-Run the full version that handles multiple categories per stock with detailed analysis:
-
-```bash
-python scripts/combine_csv_multi_category.py
-```
-
 ## Input Data
 
 The project expects three input CSV files with dividend stock data:
