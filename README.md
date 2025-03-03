@@ -11,7 +11,7 @@ The solution can extract payment month information from ex-dividend dates and pr
 ## Project Structure
 
 ```
-dividend-stocks/
+Dividend-Stocks-Data-Processing/
 │
 ├── data/                          # Data directory
 │   ├── DividendAristocrats_02032025.csv   # Dividend Aristocrats data
